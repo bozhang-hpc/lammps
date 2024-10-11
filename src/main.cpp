@@ -39,6 +39,7 @@ static void finalize()
 {
   lammps_kokkos_finalize();
   lammps_python_finalize();
+  lammps_dspaces_finalize();
 }
 
 /* ----------------------------------------------------------------------

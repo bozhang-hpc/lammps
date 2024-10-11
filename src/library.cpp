@@ -61,6 +61,10 @@
 #include <Python.h>
 #endif
 
+#if defined(LMP_HAS_DSPACES)
+#include "DSPACES/dump_dspaces.h"
+#endif
+
 /// string buffer for error messages of global errors
 static std::string lammps_last_global_errormessage;
 
@@ -424,6 +428,28 @@ environment in case it is safe to do so.
 void lammps_python_finalize()
 {
   Python::finalize();
+}
+
+/* ---------------------------------------------------------------------- */
+
+/** Shut Down the DataSpaces Staging Client environment
+ *
+\verbatim embed:rst
+
+.. versionadded:: 04June2024
+
+The DataSpaces library may only be initialized once during the execution of
+a process. This is done automatically the first time DataSpaces
+functionality is used.  This requires that the DataSpaces environment
+must be explicitly shut down after any LAMMPS instance using it is
+closed (to release associated resources).
+After calling this function no DataSpaces functionality may be used.
+
+\endverbatim */
+
+void lammps_dspaces_finalize()
+{
+  DumpDSpaces::finalize();
 }
 
 

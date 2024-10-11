@@ -130,6 +130,7 @@ void lammps_mpi_init();
 void lammps_mpi_finalize();
 void lammps_kokkos_finalize();
 void lammps_python_finalize();
+void lammps_dspaces_finalize();
 
 void lammps_error(void *handle, int error_type, const char *error_text);
 
